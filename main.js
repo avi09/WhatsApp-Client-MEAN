@@ -11,10 +11,10 @@ app.use(express.static('./'))
 app.use(cookieParser());
 app.use(session({secret:"Cookie Usage"}));
 
-const accountSid = 'AC1b94d94dd03d0bd778a1afd8c0959ef6';
-const authToken = 'f475e5cbabc598ada7e38f321661063e';
+const accountSid = '';
+const authToken = '';
 
-var mynumber='+918989759279';
+var mynumber='+9';
 
 const client = require('twilio')(accountSid, authToken);
 app.use(bodyParser.urlencoded({ 
