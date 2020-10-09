@@ -1,0 +1,52 @@
+<html>
+   <head> 
+   
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js">
+      </script>
+      <style>
+         table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+         }
+         table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+         }
+         table tr:nth-child(even) {
+            background-color: #ffffff;
+         }
+         body {
+         	background-color: black;
+         	color: green;
+         }
+      </style>
+   </head>
+   
+   <body>
+   <center><h2>WhatsApp Client - NodeJS | AngularJS | Twilio </h2>
+      
+      <div ng-app = "mainApp" ng-controller = "studentController">
+      	 <form action="/connected">
+      	 Enter Auth ID
+         <input name="authid" type="text" required>
+         Enter Auth Code
+         <input name="authcode" type="password" required>
+         <button ng-click="student.fullName()">Connect</button>
+         </form>
+      </div>
+      <center>
+      <script>
+         var mainApp = angular.module("mainApp", []);
+         
+         mainApp.controller('studentController', function($scope, $http) {
+            $scope.student = {
+               fullName: function() {
+                  window.location=window.location.href+"connected";
+               }
+               
+            };
+         });
+      </script>
+      
+   </body>
+</html>
