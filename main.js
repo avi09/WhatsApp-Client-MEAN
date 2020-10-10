@@ -54,7 +54,7 @@ app.get('/connected/message', function(req, res){
 	.then(message => console.log(message.sid));
 	var history = require('./data.json');
 	var datetime = new Date();
-	let nm = {type:'sent', time:datetime, message:req.param('messag'), color:'blue'};
+	let nm = {type:'sent', time:datetime, message:req.param('messag'), color:'#2853a8'};
 	history.push(nm);
 	fs.writeFile('data.json', JSON.stringify(history), err => { if (err) throw err; });
 	
@@ -62,14 +62,24 @@ app.get('/connected/message', function(req, res){
 	}	
 })
 
-app.post('/connected/received', function(req,res){
-	message1 = req.param('Body');
-	console.log(message1)
+app.post('/connected/received', async function(req,res){
+	count=0;
+	var message1 = req.body['MessageSid'];
+	console.log(message1);
+	var response = await client.messages(message1).fetch();
+	var x = await response;
+	var mg = x['body'].split('\n')[0].substr(10,);
+	mg = mg.slice(0, -1);
+	console.log(mg);
 	var history = require('./data.json');
 	var datetime = new Date();
-	let nm = {type:'received', time:datetime, message:message1, color:'green'};
-	history.push(nm);
-	fs.writeFile('data.json', JSON.stringify(history), err => { if (err) throw err; });
+	let nm = {type:'received', time:datetime, message:mg, color:'#4cb518'};
+	if (count==0 && mg.length>=1)
+	{
+		count=1;
+		history.push(nm);
+		fs.writeFile('data.json', JSON.stringify(history), err => { if (err) throw err; });
+	}
 })
 
 var server = app.listen(8081, function () {

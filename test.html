@@ -17,20 +17,23 @@
          }
          body {
          	background-color: black;
-         	color: green;
+         	color: white;
          }
       </style>
    </head>
    
    <body>
-   <center><h2>WhatsApp Client - NodeJS | AngularJS | Twilio </h2>
+   <center><div style="background-color: #43de64;"><b><font size=5>WhatsApp Client - NodeJS | AngularJS | Twilio </font></b> <br>
+      <font size=2><div style="float: right; color: gray;">Session Disconnected
+      </div></font>
+      </div><br>
       
       <div ng-app = "mainApp" ng-controller = "studentController">
       	 <form action="/connected">
-      	 Enter Auth ID
-         <input name="authid" type="text" required>
-         Enter Auth Code
-         <input name="authcode" type="password" required>
+      	 Enter Auth ID<br><br>
+         <input name="authid" type="text" required><br><br>
+         Enter Auth Code<br><br>
+         <input name="authcode" type="password" required><br><br>
          <button ng-click="student.fullName()">Connect</button>
          </form>
       </div>
